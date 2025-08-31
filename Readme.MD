@@ -1,1 +1,1 @@
-
+# Open Strike
