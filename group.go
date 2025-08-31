@@ -31,6 +31,13 @@ func (g *Group) Handle(method, path string, handler HandlerFunc) {
 	fullPath := g.Prefix + path
 
 	combined := handler
+
+	// Apply server-level middlewares first
+	for i := len(g.Server.middlewares) - 1; i >= 0; i-- {
+		combined = g.Server.middlewares[i](combined)
+	}
+
+	// Then group-specific middlewares
 	for i := len(g.Middlewares) - 1; i >= 0; i-- {
 		combined = g.Middlewares[i](combined)
 	}
