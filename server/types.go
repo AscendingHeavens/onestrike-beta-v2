@@ -13,7 +13,7 @@ type Response struct {
 	Success bool   `json:"success"`
 	Message string `json:"message"`
 	Details any    `json:"details,omitempty"`
-	Code    int    `json:"code"`
+	Code    int    `json:"code"` // required
 }
 
 // Context wraps http.ResponseWriter and *http.Request, providing

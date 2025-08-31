@@ -5,6 +5,7 @@ import (
 	"errors"
 	"io"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -90,6 +91,10 @@ func (c *Context) Bind(dest any) error {
 // BindJSON reads the request body as JSON and attempts to decode it into dest.
 // If decoding fails, it automatically writes a 400 Bad Request response
 // and returns the error. This enforces Content-Type: application/json.
+//
+// You typically do NOT need to check the returned error yourself — just return nil
+// from your handler to stop further execution. If you want custom error handling,
+// use ShouldBindJSON instead.
 func (c *Context) BindJSON(dest any) error {
 	return c.bindBody(dest, true)
 }
@@ -150,4 +155,32 @@ func (c *Context) JSON(code int, resp *Response) {
 	c.Writer.Header().Set("Content-Type", "application/json")
 	c.Writer.WriteHeader(code)
 	_ = json.NewEncoder(c.Writer).Encode(resp)
+}
+
+// Param returns the value of a path parameter by name.
+// Example: /users/:id -> c.Param("id") returns "123"
+func (c *Context) Param(name string) string {
+	if c.Params == nil {
+		return ""
+	}
+	return c.Params[name]
+}
+
+// Query returns the first value of a URL query parameter by key.
+// Example: /search?q=golang -> c.Query("q") returns "golang"
+func (c *Context) Query(key string) string {
+	if c.Request == nil {
+		return ""
+	}
+	return c.Request.URL.Query().Get(key)
+}
+
+// QueryArray returns all values for a query parameter key.
+// Example: /filter?tag=go&tag=web -> c.QueryArray("tag") returns []string{"go", "web"}
+func (c *Context) QueryArray(key string) []string {
+	if c.Request == nil {
+		return nil
+	}
+	values, _ := url.ParseQuery(c.Request.URL.RawQuery)
+	return values[key]
 }

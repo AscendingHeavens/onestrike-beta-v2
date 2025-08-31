@@ -1,6 +1,8 @@
 package main
 
 import (
+	"net/http"
+
 	onestrike "github.com/Rishi-Mishra0704/OneStrike"
 	"github.com/Rishi-Mishra0704/OneStrike/middleware"
 )
@@ -20,16 +22,34 @@ func main() {
 	app.GET("/ping", func(c *onestrike.Context) *onestrike.Response {
 		return &onestrike.Response{Success: true, Message: "pong", Code: 200}
 	})
+	app.GET("/search", func(c *onestrike.Context) *onestrike.Response {
+		q := c.Query("q")
+		return &onestrike.Response{
+			Success: true,
+			Message: "Query received",
+			Details: map[string]string{"query": q},
+			Code:    200,
+		}
+	})
 
 	// Route group
 	v1 := app.Group("/api/v1")
 	v1.GET("/users/:id", func(c *onestrike.Context) *onestrike.Response {
-		id := c.Params["id"]
+		id := c.Param("id")
 		return &onestrike.Response{Success: true, Message: "User found", Details: map[string]string{"id": id}, Code: 200}
 	})
 
-	auth := app.Group("auth")
+	auth := app.Group("/auth")
 	auth.POST("/signup", Signup)
+	auth.GET("/users/:id", func(c *onestrike.Context) *onestrike.Response {
+		id := c.Param("id")
+		return &onestrike.Response{
+			Success: true,
+			Message: "User found",
+			Details: map[string]string{"id": id},
+			Code:    200,
+		}
+	})
 
 	// Start server
 	app.Start(":8080")
@@ -51,7 +71,13 @@ func AuthMiddleware() onestrike.Middleware {
 }
 
 func Signup(ctx *onestrike.Context) *onestrike.Response {
+	var req struct{}
+	if err := ctx.BindJSON(&req); err != nil {
+		return nil
+	}
 	return &onestrike.Response{
-		Message: "Signup",
+		Message: "Signup successful",
+		Success: true,
+		Code:    http.StatusOK,
 	}
 }

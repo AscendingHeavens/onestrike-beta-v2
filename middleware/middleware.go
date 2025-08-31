@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"log"
+	"runtime"
 	"time"
 
 	"github.com/Rishi-Mishra0704/OneStrike/server"
@@ -34,13 +35,32 @@ func Recovery() Middleware {
 	}
 }
 
-// Profiling
+// ProfilingMiddleware logs detailed timing info including handler execution and memory usage
 func ProfilingMiddleware() Middleware {
 	return func(next server.HandlerFunc) server.HandlerFunc {
 		return func(c *server.Context) *server.Response {
 			start := time.Now()
+
+			// Run handler
 			resp := next(c)
-			log.Printf("Route %s took %v", c.Request.URL.Path, time.Since(start))
+
+			// Calculate elapsed
+			elapsed := time.Since(start)
+
+			// Capture some runtime stats (GC, mem)
+			var memStats runtime.MemStats
+			runtime.ReadMemStats(&memStats)
+
+			log.Printf(
+				"[PROFILE] Route: %s | Status: %d | Time: %v | Alloc: %dKB | Sys: %dKB | NumGC: %d",
+				c.Request.URL.Path,
+				resp.Code,
+				elapsed,
+				memStats.Alloc/1024,
+				memStats.Sys/1024,
+				memStats.NumGC,
+			)
+
 			return resp
 		}
 	}
