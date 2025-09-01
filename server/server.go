@@ -177,37 +177,3 @@ func (c *Context) QueryArray(key string) []string {
 	values, _ := url.ParseQuery(c.Request.URL.RawQuery)
 	return values[key]
 }
-
-// String writes plain text and returns a Response
-// Example: c.String(200, "Hello World")
-func (c *Context) String(code int, s string) *Response {
-	c.writeResponse(code, "text/plain", []byte(s))
-	return &Response{Success: true, Message: s, Code: code}
-}
-
-// HTML writes HTML content and returns a Response
-// Example: c.HTML(200, "<h1>Hello</h1>")
-func (c *Context) HTML(code int, html string) *Response {
-	c.writeResponse(code, "text/html", []byte(html))
-	return &Response{Success: true, Message: "HTML written", Code: code}
-}
-
-// Blob writes raw binary data with the given Content-Type and returns a Response
-// Example: c.Blob(200, data, "image/png")
-func (c *Context) Blob(code int, data []byte, contentType string) *Response {
-	c.writeResponse(code, contentType, data)
-	return &Response{Success: true, Message: "Blob written", Code: code}
-}
-
-// JSON writes the given Response object as JSON with the provided status code.
-// This method respects c.Handled, so it won't write twice if something else already wrote.
-func (c *Context) JSON(code int, resp *Response) *Response {
-	if c.Handled {
-		return resp
-	}
-	c.Writer.Header().Set("Content-Type", "application/json")
-	c.Writer.WriteHeader(code)
-	_ = json.NewEncoder(c.Writer).Encode(resp)
-	c.Handled = true
-	return resp
-}

@@ -33,9 +33,11 @@ func main() {
 	})
 
 	app.GET("/html", func(c *onestrike.Context) *onestrike.Response {
-
 		return c.HTML(200, "<h1>Serving HTML via OneStrike</h1>") // send file content as HTML
+	})
 
+	app.GET("/docs", func(c *onestrike.Context) *onestrike.Response {
+		return c.Redirect(302, "https://google.com")
 	})
 
 	// Route group
