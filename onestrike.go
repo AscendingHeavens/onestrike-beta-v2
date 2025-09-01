@@ -86,7 +86,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	resp := final(c)
 
 	// Write JSON response
-	if resp != nil {
+	if !c.Handled && resp != nil {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(resp.Code)
 		json.NewEncoder(w).Encode(resp)

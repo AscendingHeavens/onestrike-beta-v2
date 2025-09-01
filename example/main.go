@@ -32,6 +32,12 @@ func main() {
 		}
 	})
 
+	app.GET("/html", func(c *onestrike.Context) *onestrike.Response {
+
+		return c.HTML(200, "<h1>Serving HTML via OneStrike</h1>") // send file content as HTML
+
+	})
+
 	// Route group
 	v1 := app.Group("/api/v1")
 	v1.GET("/users/:id", func(c *onestrike.Context) *onestrike.Response {

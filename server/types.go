@@ -8,7 +8,7 @@ import "net/http"
 //   - Success: indicates whether the request was successful.
 //   - Message: human-readable message describing the result.
 //   - Details: optional field containing extra data (any type).
-//   - Code: HTTP status code to be sent to the client.
+//   - Code: HTTP status code to be sent to the client. It's Required to have at least one Status code
 type Response struct {
 	Success bool   `json:"success"`
 	Message string `json:"message"`
@@ -26,6 +26,7 @@ type Context struct {
 	Writer  http.ResponseWriter
 	Request *http.Request
 	Params  map[string]string
+	Handled bool
 }
 
 // HandlerFunc defines the signature for all route handlers in OneStrike.
