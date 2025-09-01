@@ -1,8 +1,12 @@
 package middleware
 
 import (
+	"fmt"
 	"log"
+	"net/http"
 	"runtime"
+	"runtime/debug"
+	"strings"
 	"time"
 
 	"github.com/Rishi-Mishra0704/OneStrike/server"
@@ -22,14 +26,32 @@ func Logger() Middleware {
 }
 
 // Panic Recovery
+// Recovery returns a middleware that recovers from panics and writes a 500 response.
 func Recovery() Middleware {
 	return func(next server.HandlerFunc) server.HandlerFunc {
 		return func(c *server.Context) *server.Response {
 			defer func() {
 				if r := recover(); r != nil {
-					log.Printf("Recovered panic: %v", r)
+					// Log stack trace
+					log.Printf("Recovered panic: %v\n%s", r, string(debug.Stack()))
+
+					// Only write response if handler hasn't already written
+					if !c.Handled {
+						accept := c.Request.Header.Get("Accept")
+						if strings.Contains(accept, "text/html") {
+							c.HTML(http.StatusInternalServerError, "<h1>500 Internal Server Error</h1>")
+						} else {
+							c.JSON(http.StatusInternalServerError, &server.Response{
+								Success: false,
+								Message: "Internal Server Error",
+								Code:    http.StatusInternalServerError,
+								Details: fmt.Sprintf("%v", r),
+							})
+						}
+					}
 				}
 			}()
+
 			return next(c)
 		}
 	}
