@@ -175,6 +175,45 @@ id := c.Param("id")      // /users/:id
 * Advanced profiling and metrics
 
 ---
+## Contributions
+
+Contributions to OneStrike are welcome and encouraged! Here's how you can help:
+
+### Reporting Issues
+
+* Open an issue on GitHub if you find bugs, unexpected behavior, or have feature requests.
+* Provide clear reproduction steps and examples whenever possible.
+
+### Code Contributions
+
+1. **Fork the repository**.
+2. **Create a new branch** for your feature or bug fix: `git checkout -b feature/my-feature`.
+3. **Write tests** for your changes.
+4. **Make your changes** following the project's coding standards.
+5. **Run all tests** locally to ensure nothing breaks.
+6. **Commit your changes** with clear and descriptive messages.
+7. **Push your branch** to your fork.
+8. **Open a pull request** against the `main` branch of the main repository.
+
+### Documentation
+
+* Improve documentation, examples, or guides.
+* Correct typos or clarify confusing explanations.
+
+### Code Reviews
+
+* Review open pull requests and provide feedback.
+* Test new features and verify fixes.
+
+### Style & Standards
+
+* Follow Go idiomatic practices.
+* Keep commits focused and concise.
+* Write descriptive commit messages.
+
+We appreciate all contributions, big or small, and they help make OneStrike better for everyone!
+
+
 
 ## License
 
