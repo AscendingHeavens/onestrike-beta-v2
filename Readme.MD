@@ -65,6 +65,14 @@ func main() {
 		}
 	})
 
+	app.GET("/html", func(c *onestrike.Context) *onestrike.Response {
+		return c.HTML(200, "<h1>Serving HTML via OneStrike</h1>") // send file content as HTML
+	})
+
+	app.GET("/docs", func(c *onestrike.Context) *onestrike.Response {
+		return c.Redirect(302, "https://google.com")
+	})
+
 	// Route group
 	v1 := app.Group("/api/v1")
 	v1.GET("/users/:id", func(c *onestrike.Context) *onestrike.Response {
@@ -171,9 +179,9 @@ id := c.Param("id")      // /users/:id
 
 * Form/url-encoded body support
 * Validation helpers
-* More built-in middleware (CORS, JWT, etc.)
+* More built-in middleware (JWT, etc.)
 * Advanced profiling and metrics
-
+* Testing
 ---
 ## Contributions
 
