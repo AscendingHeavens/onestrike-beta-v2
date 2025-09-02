@@ -2,6 +2,20 @@ package server
 
 import "net/http"
 
+// route represents a single registered route in the router.
+// It contains the HTTP method, the route path pattern, and the handler function.
+type route struct {
+	Method  string      // HTTP method (GET, POST, PUT, etc.)
+	Path    string      // Route pattern, e.g. "/users/:id"
+	Handler HandlerFunc // Function to handle requests matching this route
+}
+
+// Router is a minimal HTTP router that supports method-based routing
+// and simple path parameters (e.g., /users/:id).
+type Router struct {
+	routes []route // List of all registered routes
+}
+
 // Response is the unified return type for all handlers in OneStrike.
 // It is automatically serialized to JSON and written to the client.
 // Fields:
