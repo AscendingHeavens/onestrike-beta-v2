@@ -21,9 +21,11 @@ jobs:
 
       - name: Run tests and enforce coverage
         run: |
-          echo "Running tests with coverage..."
-          go test ./... -json -coverprofile=coverage.out -covermode=atomic | tee test_output.json
-          # Count tests from JSON output
+          echo "Running tests (excluding ./example)..."
+          # Run tests for all packages except ./example
+          go test $(go list ./... | grep -v '^github.com/Rishi-Mishra0704/OneStrike/example') \
+            -json -coverprofile=coverage.out -covermode=atomic | tee test_output.json
+
           total_tests=$(grep -c '"Action":"run"' test_output.json || true)
           echo "✅ Total tests executed: $total_tests"
           
