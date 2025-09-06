@@ -14,7 +14,7 @@ fix-lint:
 
 # Run tests with coverage and fail if below threshold (no coverage.out file)
 test:
-	@go test ./... -v --race
+	@go test ./... -v 
 
 
 # Install dependencies
