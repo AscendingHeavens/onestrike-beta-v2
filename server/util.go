@@ -47,7 +47,7 @@ func (c *Context) shouldBindBody(dest any, expectedType string, unmarshal func([
 			if err != nil {
 				return fmt.Errorf("invalid Content-Type: %w", err)
 			}
-			if mediaType != expectedType && !(expectedType == "application/xml" && mediaType == "text/xml") {
+			if mediaType != expectedType && (expectedType != "application/xml" || mediaType != "text/xml") {
 				return fmt.Errorf("expected Content-Type %s, got %s", expectedType, mediaType)
 			}
 		}

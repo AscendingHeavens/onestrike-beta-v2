@@ -89,8 +89,11 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !c.Handled && resp != nil {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(resp.Code)
-		json.NewEncoder(w).Encode(resp)
+		if err := json.NewEncoder(w).Encode(resp); err != nil {
+			log.Printf("failed to encode JSON response: %v", err)
+		}
 	}
+
 }
 
 // Start runs the HTTP server on the specified address. It logs the startup

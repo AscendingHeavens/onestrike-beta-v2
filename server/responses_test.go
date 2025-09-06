@@ -73,7 +73,9 @@ func TestResponseHelpers(t *testing.T) {
 		// create temporary file
 		filePath := t.TempDir() + "/test.txt"
 		content := []byte("hello file")
-		os.WriteFile(filePath, content, 0644)
+		if err := os.WriteFile(filePath, content, 0644); err != nil {
+			t.Fatalf("failed to create temp file: %v", err)
+		}
 
 		resp := c.File(filePath)
 		assert.Equal(t, 200, rec.Code)

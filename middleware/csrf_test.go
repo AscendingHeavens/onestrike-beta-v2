@@ -126,7 +126,3 @@ func TestCSRF_InvalidToken_BlocksRequest(t *testing.T) {
 	assert.Equal(t, http.StatusForbidden, resp.Code)
 	assert.Contains(t, resp.Message, "invalid CSRF token")
 }
-
-func testGenerateCSRFToken(c *server.Context, cfg CSRFConfig) string {
-	return getOrCreateCSRFToken(c, cfg)
-}

@@ -185,7 +185,9 @@ func TestShouldBind_Multipart_CallsMultipart(t *testing.T) {
 	body := &bytes.Buffer{}
 	writer := multipart.NewWriter(body)
 	_ = writer.WriteField("Name", "Rishi")
-	writer.Close()
+	if err := writer.Close(); err != nil {
+		t.Fatalf("failed to close multipart writer: %v", err)
+	}
 
 	c := newTestContextWithBody(http.MethodPost, writer.FormDataContentType(), body.String())
 	var p payload
@@ -303,7 +305,9 @@ func TestShouldBindMultipart_ValidMultipart(t *testing.T) {
 	body := &bytes.Buffer{}
 	writer := multipart.NewWriter(body)
 	_ = writer.WriteField("Name", "Rishi")
-	writer.Close()
+	if err := writer.Close(); err != nil {
+		t.Fatalf("failed to close multipart writer: %v", err)
+	}
 
 	c := newTestContextWithBody(http.MethodPost, writer.FormDataContentType(), body.String())
 	var p payload
@@ -366,7 +370,9 @@ func TestFormFile_ReturnsFileOrError(t *testing.T) {
 	writer := multipart.NewWriter(body)
 	fw, _ := writer.CreateFormFile("file", "test.txt")
 	_, _ = fw.Write([]byte("hello"))
-	writer.Close()
+	if err := writer.Close(); err != nil {
+		t.Fatalf("failed to close FormFile writer: %v", err)
+	}
 
 	req := httptest.NewRequest(http.MethodPost, "/", body)
 	req.Header.Set("Content-Type", writer.FormDataContentType())
