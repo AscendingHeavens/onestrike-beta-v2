@@ -1,6 +1,8 @@
 package server
 
-import "net/http"
+import (
+	"net/http"
+)
 
 // route represents a single registered route in the router.
 // It contains the HTTP method, the route path pattern, and the handler function.
@@ -36,6 +38,7 @@ type Response struct {
 //   - Writer: the http.ResponseWriter to write responses.
 //   - Request: the incoming HTTP request.
 //   - Params: a map of path parameters extracted from the route (e.g., ":id").
+
 type Context struct {
 	Writer  http.ResponseWriter
 	Request *http.Request
