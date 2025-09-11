@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Rishi-Mishra0704/OneStrike/server"
+	"github.com/Ascending-Heavens/onestrike/server"
 )
 
 // Set default CORS config

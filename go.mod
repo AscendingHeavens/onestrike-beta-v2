@@ -3,7 +3,6 @@ module github.com/Ascending-Heavens/onestrike
 go 1.24.2
 
 require (
-	github.com/Rishi-Mishra0704/OneStrike v1.2.0
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/crypto v0.42.0
 )

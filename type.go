@@ -3,8 +3,8 @@ package onestrike
 import (
 	"net/http"
 
-	"github.com/Rishi-Mishra0704/OneStrike/middleware"
-	"github.com/Rishi-Mishra0704/OneStrike/server"
+	"github.com/Ascending-Heavens/onestrike/middleware"
+	"github.com/Ascending-Heavens/onestrike/server"
 )
 
 // Server is the main entry point for the OneStrike framework.
