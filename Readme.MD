@@ -224,5 +224,4 @@ We appreciate all contributions, big or small, and they help make OneStrike bett
 
 
 ## License
-
-MIT
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
