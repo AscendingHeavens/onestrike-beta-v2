@@ -23,7 +23,7 @@ A minimal, high-performance Go web framework designed for clarity, speed, and de
 ## Installation
 
 ```bash
-go get github.com/Ascending-Heavens/onestrike
+go get github.com/AscendingHeavens/onestrike
 ```
 
 ---
@@ -36,8 +36,8 @@ package main
 import (
 	"net/http"
 
-	onestrike "github.com/Ascending-Heavens/onestrike"
-	"github.com/Ascending-Heavens/onestrike/middleware"
+	onestrike "github.com/AscendingHeavens/onestrike"
+	"github.com/AscendingHeavens/onestrike/middleware"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package middleware
 import (
 	"time"
 
-	"github.com/Ascending-Heavens/onestrike/server"
+	"github.com/AscendingHeavens/onestrike/server"
 )
 
 // Middleware defines the function signature for all middleware in OneStrike.

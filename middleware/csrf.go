@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Ascending-Heavens/onestrike/server"
+	"github.com/AscendingHeavens/onestrike/server"
 )
 
 var DefaultCSRFConfig = CSRFConfig{

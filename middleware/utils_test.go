@@ -6,7 +6,7 @@ import (
 	"encoding/base64"
 	"testing"
 
-	"github.com/Ascending-Heavens/onestrike/server"
+	"github.com/AscendingHeavens/onestrike/server"
 	"github.com/stretchr/testify/assert"
 )
 
