@@ -1,6 +1,8 @@
 package onestrike
 
 import (
+	"net/http"
+
 	"github.com/Rishi-Mishra0704/OneStrike/middleware"
 	"github.com/Rishi-Mishra0704/OneStrike/server"
 )
@@ -60,3 +62,10 @@ type ConditionalMiddleware = middleware.ConditionalMiddleware
 // HandlerFunc is an alias to server.HandlerFunc, the function signature
 // that route handlers must implement. It takes a *Context and returns a *Response.
 type HandlerFunc = server.HandlerFunc
+
+// Option A: Using an interface (Recommended)
+
+// First, define an interface for the server starter
+type TLSStarter interface {
+	startTLSServer(*http.Server)
+}
