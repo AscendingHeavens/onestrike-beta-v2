@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/AscendingHeavens/onestrike/middleware"
-	"github.com/AscendingHeavens/onestrike/server"
+	"github.com/AscendingHeavens/onestrike/v2/middleware"
+	"github.com/AscendingHeavens/onestrike/v2/server"
 )
 
 // New creates a new OneStrike Server instance with an empty router and middleware stack.

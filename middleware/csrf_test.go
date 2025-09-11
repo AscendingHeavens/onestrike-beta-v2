@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/AscendingHeavens/onestrike/server"
+	"github.com/AscendingHeavens/onestrike/v2/server"
 	"github.com/stretchr/testify/assert"
 )
 

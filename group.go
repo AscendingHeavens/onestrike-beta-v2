@@ -3,7 +3,7 @@ package onestrike
 import (
 	"net/http"
 
-	"github.com/AscendingHeavens/onestrike/middleware"
+	"github.com/AscendingHeavens/onestrike/v2/middleware"
 )
 
 // Group represents a collection of routes sharing a common prefix

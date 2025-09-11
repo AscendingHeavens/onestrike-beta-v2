@@ -6,7 +6,7 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 
-	"github.com/AscendingHeavens/onestrike/server"
+	"github.com/AscendingHeavens/onestrike/v2/server"
 )
 
 // generateCSRFToken creates a random token

@@ -23,7 +23,7 @@ jobs:
         run: |
           echo "Running tests (excluding ./example)..."
           # Run tests for all packages except ./example
-          go test $(go list ./... | grep -v '^github.com/AscendingHeavens/onestrike/example') \
+          go test $(go list ./... | grep -v '^github.com/AscendingHeavens/onestrike/v2/example') \
             -json -coverprofile=coverage.out -covermode=atomic | tee test_output.json
 
           total_tests=$(grep -c '"Action":"run"' test_output.json || true)

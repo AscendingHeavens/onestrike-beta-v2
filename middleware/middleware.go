@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AscendingHeavens/onestrike/server"
+	"github.com/AscendingHeavens/onestrike/v2/server"
 )
 
 var (

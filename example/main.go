@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	onestrike "github.com/AscendingHeavens/onestrike"
-	"github.com/AscendingHeavens/onestrike/middleware"
+	onestrike "github.com/AscendingHeavens/onestrike/v2"
+	"github.com/AscendingHeavens/onestrike/v2/middleware"
 )
 
 func main() {

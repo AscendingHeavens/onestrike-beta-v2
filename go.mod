@@ -1,4 +1,4 @@
-module github.com/AscendingHeavens/onestrike
+module github.com/AscendingHeavens/onestrike/v2
 
 go 1.24.2
 

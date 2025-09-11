@@ -26,7 +26,7 @@ Note: This repository was transferred to AscendingHeavens/onestrike. Due to Go m
 ## Installation
 
 ```bash
-go get github.com/AscendingHeavens/onestrike
+go get github.com/AscendingHeavens/onestrike/v2
 ```
 
 ---
@@ -39,8 +39,8 @@ package main
 import (
 	"net/http"
 
-	onestrike "github.com/AscendingHeavens/onestrike"
-	"github.com/AscendingHeavens/onestrike/middleware"
+	onestrike "github.com/AscendingHeavens/onestrike/v2"
+	"github.com/AscendingHeavens/onestrike/v2/middleware"
 )
 
 func main() {
