@@ -40,10 +40,11 @@ type Response struct {
 //   - Params: a map of path parameters extracted from the route (e.g., ":id").
 
 type Context struct {
-	Writer  http.ResponseWriter
-	Request *http.Request
-	Params  map[string]string
-	Handled bool
+	Writer    http.ResponseWriter
+	Request   *http.Request
+	Params    map[string]string
+	Handled   bool
+	Templates *TemplateRenderer
 }
 
 // HandlerFunc defines the signature for all route handlers in OneStrike.
