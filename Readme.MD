@@ -1,5 +1,10 @@
 # OneStrike Framework (Go)
 
+<p align="center">
+  <img src="./onestrike-logo.jpg" alt="OneStrike Logo" width="200">
+</p>
+
+
 A minimal, high-performance Go web framework designed for clarity, speed, and decisive handling of HTTP requests. Inspired by Gin and Echo, OneStrike emphasizes explicit error handling, easy middleware composition, route groups, and ergonomic access to path and query parameters.
 
 > [GO DOCS](https://pkg.go.dev/github.com/AscendingHeavens/onestrike/v2)  
