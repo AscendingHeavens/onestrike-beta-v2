@@ -106,6 +106,7 @@ func (s *Server) Start(addr string) {
 	}
 }
 
+// NewTemplateRenderer Encapsulates server.NewTemplateRenderer
 func NewTemplateRenderer(pattern string, devMode bool, funcs template.FuncMap) *server.TemplateRenderer {
 	return server.NewTemplateRenderer(pattern, devMode, funcs)
 }

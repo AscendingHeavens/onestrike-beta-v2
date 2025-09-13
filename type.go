@@ -68,4 +68,4 @@ type TLSStarter interface {
 	startTLSServer(*http.Server)
 }
 
-type TemplateRender = server.TemplateRenderer
+type TemplateRenderer = server.TemplateRenderer
