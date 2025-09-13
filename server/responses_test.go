@@ -48,7 +48,7 @@ func TestResponseHelpers(t *testing.T) {
 		rec := httptest.NewRecorder()
 		c := &Context{Writer: rec}
 		r := &Response{Success: true, Message: "ok", Code: 200}
-		resp := c.JSON(200, r)
+		resp := c.JSON(true, "ok", nil, 200)
 		assert.Equal(t, 200, rec.Code)
 		assert.Equal(t, "application/json", rec.Header().Get("Content-Type"))
 		assert.JSONEq(t, `{"success":true,"message":"ok","code":200}`, rec.Body.String())
