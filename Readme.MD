@@ -1,4 +1,4 @@
-# OneStrike Framework (Go)
+# OneStrike Framework (Go) V2.0.3
 
 <p align="center">
   <img src="./onestrike-logo.jpg" alt="OneStrike Logo" width="200">
