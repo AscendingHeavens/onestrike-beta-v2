@@ -28,13 +28,10 @@ func (c *Context) writeErrorResponse(code int, message string, err error) {
 		return
 	}
 
-	resp := &Response{
-		Success: false,
-		Message: message,
-		Code:    code,
-		Details: err.Error(),
-	}
-	c.JSON(code, resp)
+	c.JSON(false,
+		message,
+		err.Error(),
+		code)
 }
 
 // shouldBindBody is the core implementation for body binding with size limits.

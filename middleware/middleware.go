@@ -46,12 +46,12 @@ func Recovery() Middleware {
 						if strings.Contains(accept, "text/html") {
 							c.HTML(http.StatusInternalServerError, "<h1>500 Internal Server Error</h1>")
 						} else {
-							c.JSON(http.StatusInternalServerError, &server.Response{
-								Success: false,
-								Message: "Internal Server Error",
-								Code:    http.StatusInternalServerError,
-								Details: fmt.Sprintf("%v", r),
-							})
+							c.JSON(
+								false,
+								"Internal Server Error",
+								fmt.Sprintf("%v", r),
+								http.StatusInternalServerError,
+							)
 						}
 					}
 				}

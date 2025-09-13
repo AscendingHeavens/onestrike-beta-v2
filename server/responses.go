@@ -30,7 +30,32 @@ func (c *Context) Blob(code int, data []byte, contentType string) *Response {
 
 // JSON writes the given Response object as JSON with the provided status code.
 // This method respects c.Handled, so it won't write twice if something else already wrote.
-func (c *Context) JSON(code int, resp *Response) *Response {
+func (c *Context) JSON(success bool, message string, details any, code int) *Response {
+	resp := &Response{
+		Success: success,
+		Message: message,
+		Details: details,
+		Code:    code,
+	}
+	if c.Handled {
+		return resp
+	}
+	c.Writer.Header().Set("Content-Type", "application/json")
+	c.Writer.WriteHeader(code)
+	_ = json.NewEncoder(c.Writer).Encode(resp)
+	c.Handled = true
+	return resp
+}
+
+// JSON writes the given Response object as JSON with the provided status code.
+// This method respects c.Handled, so it won't write twice if something else already wrote.
+func (c *Context) ErrorJSON(message string, details any, code int) *Response {
+	resp := &Response{
+		Success: false,
+		Message: message,
+		Details: details,
+		Code:    code,
+	}
 	if c.Handled {
 		return resp
 	}
@@ -65,7 +90,6 @@ func (c *Context) File(filePath string) *Response {
 
 	data, err := os.ReadFile(filePath)
 	if err != nil {
-		c.JSON(404, &Response{Success: false, Message: "File not found", Code: 404})
 		return &Response{Success: false, Message: "File not found", Code: 404}
 	}
 

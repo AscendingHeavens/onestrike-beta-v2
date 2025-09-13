@@ -35,12 +35,12 @@ func TestStartTLS_CallsListenAndServeTLS(t *testing.T) {
 
 func TestStartTLS_ListenAndServeTLSError(t *testing.T) {
 	// simulate error
-	listenAndServeTLS = func(a, c, k string, h http.Handler) error {
+	listenAndServeTLS = func(_, _, _ string, _ http.Handler) error {
 		return errors.New("tls error")
 	}
 
 	called := false
-	logFatal = func(v ...interface{}) {
+	logFatal = func(v ...any) {
 		called = true
 		assert.Contains(t, v[0].(error).Error(), "tls error")
 	}
@@ -52,7 +52,7 @@ func TestStartTLS_ListenAndServeTLSError(t *testing.T) {
 
 func TestStartAutoTLS_CallsListenAndServeTLS(t *testing.T) {
 	called := false
-	logFatal = func(v ...interface{}) {
+	logFatal = func(_ ...any) {
 		called = true
 	}
 
