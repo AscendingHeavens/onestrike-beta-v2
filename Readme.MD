@@ -12,6 +12,26 @@ Note: This repository was transferred to AscendingHeavens/onestrike. Due to Go m
 
 ---
 
+⚠️ **This repository is no longer actively maintained.**  
+It contains the final release series of **OneStrike v2.x.x**.  
+
+Active development has moved to the new repository:  
+👉 [github.com/ascendingheavens/onestrike](https://github.com/ascendingheavens/onestrike)
+
+### Why the Change?
+- New module path: `github.com/ascendingheavens/onestrike`
+- Clean, lowercase import path
+- Fresh semantic versioning history
+- Future-proof for Go modules
+
+### What Happens to This Repo?
+- All previous tags (including `v2.x.x`) remain available on the Go proxy for reproducible builds.
+- No new features, fixes, or releases will be added here.
+- This repository is kept read-only for historical reference.
+
+---
+
+
 ## Features
 
 * Routing with HTTP methods: GET, POST, PUT, PATCH, DELETE
