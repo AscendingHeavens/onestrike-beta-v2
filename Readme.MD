@@ -16,7 +16,7 @@ Note: This repository was transferred to AscendingHeavens/onestrike. Due to Go m
 It contains the final release series of **OneStrike v2.x.x**.  
 
 Active development has moved to the new repository:  
-👉 [github.com/ascendingheavens/onestrike](https://github.com/ascendingheavens/onestrike)
+👉 [github.com/AscendingHeavens/onestrike](https://github.com/AscendingHeavens/onestrike)
 
 ### Why the Change?
 - New module path: `github.com/ascendingheavens/onestrike`
