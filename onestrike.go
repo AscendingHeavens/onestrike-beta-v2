@@ -2,6 +2,7 @@ package onestrike
 
 import (
 	"encoding/json"
+	"html/template"
 	"log"
 	"net/http"
 	"strings"
@@ -103,4 +104,8 @@ func (s *Server) Start(addr string) {
 	if err := http.ListenAndServe(addr, s); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func NewTemplateRenderer(pattern string, devMode bool, funcs template.FuncMap) *server.TemplateRenderer {
+	return server.NewTemplateRenderer(pattern, devMode, funcs)
 }
